@@ -1,6 +1,6 @@
 # okf-bundle-template
 
-Template de **bundle** pour le [OKF Bundle Hub](../okf-hub) : un dépôt git
+Template de **bundle** pour le [OKF Bundle Hub](https://github.com/Movida/okf-hub) : un dépôt git
 contenant un corpus markdown, son manifeste et ses règles de gouvernance.
 
 Un bundle se lit sans le hub — c'est un répertoire de markdown, `cat` suffit.
@@ -42,3 +42,12 @@ git clone <url-de-ma-base> bases/<name>
 ```
 
 Puis `kb_hub_rescan` depuis une session connectée. Rien d'autre.
+
+## Licence
+
+[Apache 2.0](LICENSE). Voir [`NOTICE`](NOTICE).
+
+Une base instanciée depuis ce template **n'hérite pas de cette licence** : le
+corpus que vous y écrivez est le vôtre, et vous le licenciez comme vous
+l'entendez. Pensez-y avant de publier une base dont le contenu reprend de la
+documentation tierce.
