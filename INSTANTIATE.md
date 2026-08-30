@@ -88,7 +88,35 @@ recherche est du remplissage.
 
 Mettre à jour `knowledge/index.md` et `knowledge/log.md` en conséquence.
 
-## 8. Finalisation du dépôt
+## 8. Valider la gouvernance et passer à `stable`
+
+Le `GOVERNANCE.md` du template est livré avec `status: draft` dans son
+frontmatter. Tant que ce statut tient :
+
+- `kb_governance` préfixe ses sorties de
+  `[GOUVERNANCE EN BROUILLON — les règles peuvent évoluer, les propositions
+  restent acceptées]` ;
+- la skill `kb-review` prévient l'humain, à chaque revue, que les règles
+  appliquées ne sont pas validées.
+
+Rien n'est bloqué pour autant : les propositions sont acceptées et les revues
+possibles en brouillon. C'est un avertissement, pas une machine à états.
+
+**Demander :** les golden rules et le périmètre, tels qu'ils sont maintenant,
+sont-ils ceux que tu veux voir appliqués à toute proposition ?
+
+Sur réponse affirmative, passer le frontmatter à :
+
+```yaml
+---
+status: stable
+---
+```
+
+Sur réponse négative, laisser `draft` : c'est exactement ce à quoi il sert.
+Le repasser à `stable` plus tard ne demande qu'une ligne.
+
+## 9. Finalisation du dépôt
 
 ```sh
 # Renommer le remote si le dépôt vient d'un clone du template
@@ -99,7 +127,7 @@ git add -A
 git commit -m "Instanciation de la base <name>"
 ```
 
-## 9. Déploiement sur le hub
+## 10. Déploiement sur le hub
 
 ```sh
 cd <racine-du-hub>
@@ -112,7 +140,7 @@ Puis, depuis une session connectée au hub, appeler l'outil `kb_hub_rescan`.
 l'exécute. Les autres sessions Claude déjà ouvertes sur ce hub ne verront la
 nouvelle base qu'après leur propre rescan, ou après redémarrage.
 
-## 10. Vérification
+## 11. Vérification
 
 Depuis une session connectée :
 
@@ -121,7 +149,11 @@ Depuis une session connectée :
 - `kb_governance` avec `base: <name>` → les golden rules et le schéma sortent ;
 - `kb_search` sur un mot du premier document → il est trouvé ;
 - `kb_propose` avec une proposition d'essai → elle atterrit dans
-  `proposals/pending/` et un commit `proposal: …` apparaît dans le dépôt.
+  `proposals/pending/` et un commit `proposal: …` apparaît dans le dépôt ;
+- `kb_proposal_status` avec l'`id` retourné → la proposition ressort `pending`.
 
-Résoudre ensuite la proposition d'essai avec la skill `kb-review`, pour vérifier
-le cycle complet avant d'ouvrir la base à des contributeurs.
+Résoudre ensuite la proposition d'essai avec la skill `kb-review`, puis rappeler
+`kb_proposal_status` sur le même `id` : le verdict doit sortir, avec
+`integrated-into` ou le motif de rejet. C'est la boucle complète
+contribution → revue → consultation, à vérifier avant d'ouvrir la base à des
+contributeurs.

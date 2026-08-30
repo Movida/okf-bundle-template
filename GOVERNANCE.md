@@ -1,3 +1,11 @@
+---
+# draft | stable — défaut si absent : stable.
+# Un template est livré en brouillon : les règles ci-dessous sont des
+# exemples que personne n'a encore validés pour TA base. Passe à `stable`
+# à l'étape 8 d'INSTANTIATE.md, une fois les golden rules arbitrées.
+status: draft
+---
+
 # Gouvernance — <Nom lisible de la base>
 
 Ce document est injecté dans le contexte du gestionnaire à chaque revue de
