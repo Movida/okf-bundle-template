@@ -1,0 +1,44 @@
+# Manifeste de bundle — sa présence à la racine fait de ce dépôt un bundle.
+# Remplacez chaque placeholder <…>, puis supprimez cette ligne de rappel.
+
+# --- Identité — champs OBLIGATOIRES ---
+
+bundle-spec: "0.1"                 # version de la spec du hub. Ne pas modifier.
+
+name: <ma-base>                    # identifiant technique, motif [a-z0-9-]+
+                                   # C'est LUI que les outils MCP attendent en
+                                   # paramètre `base`, pas le nom du répertoire.
+
+title: "<Nom lisible de la base>"  # ≤ 100 caractères, sur une seule ligne
+
+description: >                     # 1 à 3 phrases. Injectée dans la description
+  <Ce que contient cette base, et    des outils MCP, donc dans le contexte de
+  ce qu'un agent peut espérer y       toutes les sessions connectées au hub.
+  trouver. Écrivez-la pour qu'un      Écrivez-la pour le routage : elle doit
+  agent puisse décider si elle est    permettre de choisir CETTE base plutôt
+  pertinente pour sa requête.>        qu'une autre. Normalisée et plafonnée à
+                                   #  500 caractères.
+
+# --- Identité — champs OPTIONNELS ---
+
+version: "0.1.0"                   # informatif : aucune règle d'incrément imposée
+okf-spec: "0.2"                    # déclaratif, non vérifié par le hub
+
+# --- Structure — optionnel, avec défaut ---
+
+corpus-dir: knowledge              # défaut : "knowledge". Doit exister, être
+                                   # strictement inclus dans le bundle, ne pas
+                                   # être la racine, et ne pas contenir
+                                   # proposals/.
+
+# --- Gouvernance ---
+
+governance:
+  rules: ./GOVERNANCE.md           # OBLIGATOIRE — golden rules du gestionnaire
+  frontmatter-schema: ./schema.yaml
+  review: human                    # seule valeur supportée en v0
+
+# --- Extensions [v1+] — ignorées par le hub v0, conservées sans effet ---
+
+tools: []
+skills: []

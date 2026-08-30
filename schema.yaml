@@ -1,0 +1,62 @@
+# Schéma de frontmatter du corpus.
+#
+# En v0, ce fichier est de la DOCUMENTATION : il est injecté dans le contexte du
+# gestionnaire, mais aucune validation automatique n'est effectuée. Il n'en est
+# pas moins la référence — le gestionnaire s'y tient.
+#
+# Les champs ci-dessous suivent OKF v0.2 (§ 4.1 et § 5 de la spec OKF).
+# Adapte-les, mais garde `type` : c'est le seul champ requis par OKF.
+
+required:
+  - name: type
+    type: string
+    description: >
+      Nature du concept. Valeurs libres, non enregistrées centralement.
+      Exemples pour cette base : <Procédure>, <Incident>, <Référence>, <Concept>.
+
+optional:
+  # --- identité (OKF § 4.1) ---
+  - name: title
+    type: string
+    description: Nom lisible. Utilisé par kb_search pour intituler les résultats.
+  - name: description
+    type: string
+    description: Une phrase de résumé, reprise dans index.md.
+  - name: resource
+    type: string
+    description: URI canonique de l'objet décrit, si le concept en désigne un.
+  - name: tags
+    type: list[string]
+
+  # --- provenance (OKF § 5.1) ---
+  - name: sources
+    type: list[object]
+    description: >
+      Matériaux dont le concept dérive. Chaque entrée porte au minimum
+      `resource` (URL, chemin relatif au bundle, ou descripteur de portée),
+      et optionnellement `id`, `title`, `author`, `last_modified`.
+      Un `id` permet d'attribuer une affirmation précise par note de bas de
+      page markdown : `…texte.[^mon-id]`.
+
+  # --- confiance (OKF § 5.2) ---
+  - name: generated
+    type: object
+    description: >
+      Comment le contenu actuel a été produit : { by: <acteur>, at: <ISO 8601 UTC> }.
+      Acteur : `human:<id>`, `<agent>/<version>`, ou `process:<id>`.
+  - name: verified
+    type: list[object]
+    description: >
+      Événements de vérification : [{ by: <acteur>, at: <ISO 8601 UTC> }].
+      Une vérification par un acteur `human:` fait passer le document au palier
+      de confiance le plus élevé. Un mapping seul vaut liste à un élément.
+
+  # --- cycle de vie (OKF § 5.4, § 5.5) ---
+  - name: status
+    type: string
+    description: draft | stable | deprecated. Absent vaut `stable`.
+  - name: stale_after
+    type: datetime
+    description: >
+      Instant absolu à partir duquel le contenu est considéré comme périmé.
+      Le gestionnaire le repousse à chaque re-vérification.
