@@ -11,9 +11,12 @@ sources:
   - id: incident-4521
     resource: "incident interne #4521"
     title: Bouton de réauthentification déplacé en 3.2
-generated: { by: "human:prenom.nom", at: 2026-08-30T09:00:00Z }
+generated:
+  by: "human:prenom.nom"
+  at: 2026-08-30T09:00:00Z
 verified:
-  - { by: "human:prenom.nom", at: 2026-08-30T09:00:00Z }
+  - by: "human:prenom.nom"
+    at: 2026-08-30T09:00:00Z
 status: stable
 stale_after: 2027-02-28T00:00:00Z
 ---
