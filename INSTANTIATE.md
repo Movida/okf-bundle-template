@@ -123,9 +123,13 @@ Le repasser à `stable` plus tard ne demande qu'une ligne.
 git remote remove origin      # ou : git remote set-url origin <ton-url>
 
 rm INSTANTIATE.md
+rm -r arbre                   # déclaration HOLARCH du template, propre à lui
 git add -A
 git commit -m "Instanciation de la base <name>"
 ```
+
+Si la base est suivie par HOLARCH, la déclarer ensuite comme un projet à part entière :
+`holarch projet creer <name> --type depot-public` (type à adapter à la visibilité du dépôt).
 
 ## 10. Déploiement sur le hub
 
