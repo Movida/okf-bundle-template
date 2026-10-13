@@ -77,6 +77,14 @@ Les lister dans le champ `type` de `schema.yaml`. Puis proposer, sans imposer :
 `stale_after` ; si non, les retirer du schéma plutôt que les laisser inutilisés,
 ce qui égarerait le gestionnaire.
 
+**Demander aussi :** la base aura-t-elle des scripts qui vérifient ses propres
+règles (format d'une section, liens vers d'autres bases, secrets) ou qui
+régénèrent des vues ? Si oui, les déclarer dans `governance.checks` du
+manifeste, dans l'ordre où ils s'enchaînent : le gestionnaire les rejouera sur
+une copie avant chaque revue (`okf-review verify`). Une règle propre à la base
+que ces scripts ne vérifient pas s'écrit dans `GOVERNANCE.md`, jamais dans la
+skill de revue du hub, qui est générique.
+
 ## 7. Premier document
 
 **Demander :** quel est le premier vrai sujet à documenter ?
@@ -139,6 +147,11 @@ git clone <url-du-bundle> bases/<name>
 ```
 
 Puis, depuis une session connectée au hub, appeler l'outil `kb_hub_rescan`.
+
+Si la base déclare des `governance.checks`, l'opérateur du hub les approuve
+après relecture des scripts, dans `hub-config.local.yaml` (jamais versionné) :
+`trusted-checks: [<name>]`. Sans cette ligne, `okf-review verify` refuse de les
+lancer.
 
 **Rappeler à l'humain :** le rescan n'a d'effet que sur la session qui
 l'exécute. Les autres sessions Claude déjà ouvertes sur ce hub ne verront la

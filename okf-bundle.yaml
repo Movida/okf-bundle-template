@@ -37,6 +37,11 @@ governance:
   rules: ./GOVERNANCE.md           # OBLIGATOIRE — golden rules du gestionnaire
   frontmatter-schema: ./schema.yaml
   review: human                    # seule valeur supportée en v0
+  # checks:                        # facultatif — contrôles propres à la base, dans l'ordre :
+  #   - python3 scripts/check.py    # régénération des vues, puis vérification de ses règles.
+  #                                 # Jamais passés à un shell. Lancés par `okf-review verify`
+  #                                 # seulement, sur une copie, et si l'opérateur du hub a
+  #                                 # inscrit la base dans `trusted-checks` (spec hub rév. 4.3).
 
 # --- Extensions [v1+] — ignorées par le hub v0, conservées sans effet ---
 
